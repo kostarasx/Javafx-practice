@@ -1,10 +1,12 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class JavaPractice extends Application  {
+public class JavaPractice extends Application implements EventHandler<ActionEvent>  {
 	
 	 Button button;
 	
@@ -19,12 +21,22 @@ public class JavaPractice extends Application  {
 		button = new Button();
 		button.setText("Click me");
 		
+		button.setOnAction(this);
+		
 		StackPane layout = new StackPane();
 		layout.getChildren().add(button);
 		
 		Scene scene = new Scene(layout, 300, 250);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+
+	@Override
+	public void handle(ActionEvent event) {
+		if(event.getSource() == button) {
+			System.out.println("Hey its works");
+		}
+		
 	}
 
 }
