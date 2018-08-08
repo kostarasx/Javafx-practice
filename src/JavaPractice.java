@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class JavaPractice extends Application implements EventHandler<ActionEvent>  {
+public class JavaPractice extends Application {
 	
 	 Button button;
 	
@@ -21,7 +21,7 @@ public class JavaPractice extends Application implements EventHandler<ActionEven
 		button = new Button();
 		button.setText("Click me");
 		
-		button.setOnAction(this);
+		button.setOnAction(e -> System.out.println("This a lamda expression"));
 		
 		StackPane layout = new StackPane();
 		layout.getChildren().add(button);
@@ -31,12 +31,8 @@ public class JavaPractice extends Application implements EventHandler<ActionEven
 		primaryStage.show();
 	}
 
-	@Override
-	public void handle(ActionEvent event) {
-		if(event.getSource() == button) {
-			System.out.println("Hey its works");
-		}
-		
-	}
+
+
+	
 
 }
