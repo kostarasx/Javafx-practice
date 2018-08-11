@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -19,10 +20,14 @@ public class JavaPractice extends Application {
         window.setTitle("JavaFX - thenewboston");
         button = new Button("Click Me");
 
-        button.setOnAction(e -> {
-            boolean result = ConfirmBox.display("Title of Window", "Are you sure you want to send that pic?");
-            System.out.println(result);
-        });
+       window.setOnCloseRequest(e -> {
+    	   e.consume();
+    	   closeProgramm();
+       });
+        
+        button.setOnAction(e -> closeProgramm());
+            
+       
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
@@ -31,4 +36,11 @@ public class JavaPractice extends Application {
         window.show();
     }
 
+    private void closeProgramm() {
+    	Boolean answer = ConfirmBox.display("Test", "Are you sure you want to exit");
+    	if(answer) {
+    		Platform.exit();
+    	}
+    }
+    
 }
