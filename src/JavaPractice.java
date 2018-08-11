@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 
 public class JavaPractice extends Application {
 
+    Stage window;
     Button button;
 
     public static void main(String[] args) {
@@ -13,11 +14,15 @@ public class JavaPractice extends Application {
     }
 
     @Override
-    public void start(Stage window) {
-        window.setTitle("thenewboston");
+    public void start(Stage primaryStage) {
+        window = primaryStage;
+        window.setTitle("JavaFX - thenewboston");
         button = new Button("Click Me");
 
-        button.setOnAction(e -> AlertBox.display("Title of Window", "Wow this alert box is awesome!"));
+        button.setOnAction(e -> {
+            boolean result = ConfirmBox.display("Title of Window", "Are you sure you want to send that pic?");
+            System.out.println(result);
+        });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);

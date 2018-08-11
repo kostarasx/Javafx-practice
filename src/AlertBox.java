@@ -18,7 +18,7 @@ public class AlertBox {
         Label label = new Label();
         label.setText(message);
         Button closeButton = new Button("Close this window");
-        closeButton.setOnAction(e -> AlertBox2.display("Douleuei ???" , "Nai re malaka"));
+        closeButton.setOnAction(e -> window.close());
 
         VBox layout = new VBox(10);
         layout.getChildren().addAll(label, closeButton);
