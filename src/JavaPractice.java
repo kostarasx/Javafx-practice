@@ -1,46 +1,63 @@
 import javafx.application.Application;
-import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class JavaPractice extends Application {
 
     Stage window;
-    Button button;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
-        window.setTitle("JavaFX - thenewboston");
-        button = new Button("Click Me");
+        window.setTitle("thenewboston - JavaFX");
 
-       window.setOnCloseRequest(e -> {
-    	   e.consume();
-    	   closeProgramm();
-       });
+        //GridPane with 10px padding around edge
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(8);
+        grid.setHgap(10);
+
+        //Name Label - constrains use (child, column, row)
+        Label nameLabel = new Label("Username:");
+        GridPane.setConstraints(nameLabel, 0, 0);
+
+        //Name Input
+        TextField nameInput = new TextField("Bucky");
+        GridPane.setConstraints(nameInput, 1, 0);
+
+        //Password Label
+        Label passLabel = new Label("Password:");
+        GridPane.setConstraints(passLabel, 0, 1);
+
+        //Password Input
+        TextField passInput = new TextField();
+        passInput.setPromptText("password");
+        GridPane.setConstraints(passInput, 1, 1);
+
+        //Login
+        Button loginButton = new Button("Log In");
+        GridPane.setConstraints(loginButton, 1, 2);
         
-        button.setOnAction(e -> closeProgramm());
-            
-       
+        //Reset Pass
+        Button resetButton = new Button("Reset Password");
+        GridPane.setConstraints(resetButton, 2, 2);
+        
+        //Add everything to grid
+        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton, resetButton);
 
-        StackPane layout = new StackPane();
-        layout.getChildren().add(button);
-        Scene scene = new Scene(layout, 300, 250);
+        Scene scene = new Scene(grid, 300, 200);
         window.setScene(scene);
         window.show();
     }
 
-    private void closeProgramm() {
-    	Boolean answer = ConfirmBox.display("Test", "Are you sure you want to exit");
-    	if(answer) {
-    		Platform.exit();
-    	}
-    }
-    
+
 }
